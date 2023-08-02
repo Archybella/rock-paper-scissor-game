@@ -12,12 +12,13 @@ body {
     font-size: 20px;
     margin-bottom: 10px;
     color: greenyellow;
+    font-weight: bold;
   }
   
   .choices {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 20x;
     margin-bottom: 20px;
     
   }
@@ -25,12 +26,18 @@ body {
   .choice-btn {
     padding: 10px 20px;
     font-size: 16px;
+}
+
+.choice-img {
+    width: 100px; /* Adjust the width and height as per your images */
+    height: 100px;
     cursor: pointer;
   }
   
   #result {
-    font-size: 18px;
+    font-size: 50px;
     font-weight: bold;
     color: red;
+    font-display: italic;
   }
   
