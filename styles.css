@@ -1,43 +1,68 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-  
-  h1 {
-    margin-top: 30px;
-    color: darkgreen;
-  }
-  
-  .scoreboard {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: greenyellow;
-    font-weight: bold;
-  }
-  
-  .choices {
-    display: flex;
-    justify-content: center;
-    gap: 20x;
-    margin-bottom: 20px;
-    
-  }
-  
-  .choice-btn {
-    padding: 10px 20px;
-    font-size: 16px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 30px;
+  color: darkgreen;
+  font-weight: bold;
+}
+
+.scoreboard {
+  font-size: 50px;
+  margin-bottom: 10px;
+  color: yellowgreen;
+  font-weight: bold;
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  gap: 320px;
+  margin-bottom: 20px;
 }
 
 .choice-img {
-    width: 100px; /* Adjust the width and height as per your images */
-    height: 100px;
-    cursor: pointer;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.choice-img:hover {
+  transform: scale(1.1); /* Add a slight zoom effect on hover */
+}
+
+#result {
+  font-size: 50px;
+  font-weight: bold;
+  color: red;
+  font-style: italic;
+}
+
+#intro-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: blueviolet;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid #2b2b2b;
+  animation: typing 2s steps(40) 1s forwards;
+}
+
+@keyframes typing {
+  from {
+      width: 0;
   }
-  
-  #result {
-    font-size: 50px;
-    font-weight: bold;
-    color: red;
-    font-display: italic;
+  to {
+      width: 100%;
   }
-  
+}
+
+.hidden {
+  display: none;
+}
+
+#celebration {
+  margin-top: 20px;
+}

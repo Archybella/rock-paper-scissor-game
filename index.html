@@ -6,10 +6,11 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Rock Paper Scissors Game</h1>
+    <h1>ROCK PAPER SCISSOR GAME</h1>
+    <div id="intro-text"></div>
     <div class="scoreboard">
-        <span id="player-score">Player: 0</span>
-        <span id="computer-score">Computer: 0</span>
+        <span id="player-score">PLAYER: 0</span>
+        <span id="computer-score">COMPUTER: 0</span>
     </div>
     <div class="choices">
         <img class="choice-img" src="rock.png" alt="Rock" data-choice="rock">
@@ -17,5 +18,9 @@
         <img class="choice-img" src="scissors.png" alt="Scissors" data-choice="scissors">
     </div>
     <div id="result"></div>
+    <div id="celebration" class="hidden">
+        <p>Congratulations! You win!</p>
+        <img src="celebration.gif" alt="celebration.gif">
+    </div>
 </body>
 </html>
