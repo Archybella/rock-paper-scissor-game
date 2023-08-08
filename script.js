@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     const choices = ['Rock', 'Paper', 'Scissors'];
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -5,88 +8,83 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase(); // Convert playerSelection to lowercase for case-insensitivity
-
-    if (playerSelection === computerSelection.toLowerCase()) {
+    if (playerSelection === computerSelection) {
         return "It's a tie!";
     } else if (
-        (playerSelection === 'rock' && computerSelection.toLowerCase() === 'scissors') ||
-        (playerSelection === 'paper' && computerSelection.toLowerCase() === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection.toLowerCase() === 'paper')
+        (playerSelection === 'rock' && computerSelection === 'Scissors') ||
+        (playerSelection === 'paper' && computerSelection === 'Rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'Paper')
     ) {
-        return `You Win! ${playerSelection} beats ${computerSelection}.`;
+        return 'You Win!';
     } else {
-        return `You Lose! ${computerSelection} beats ${playerSelection}.`;
+        return 'You Lose!';
     }
 }
 
-function typeWriter(text, element, interval) {
-    let i = 0;
-    const typingInterval = setInterval(() => {
-        element.textContent += text[i];
-        i++;
-        if (i >= text.length) {
-            clearInterval(typingInterval);
-            setTimeout(() => {
-                startGame();
-            }, 1500); // Add a delay of 1.5 seconds before starting the game
-        }
-    }, interval);
+function displayResult(result) {
+    const resultDisplay = document.getElementById("result");
+    resultDisplay.textContent = result;
 }
 
-function startGame() {
-    const introText = "Let us see who wins between machines & humans in the game of Rock Paper Scissors so to prove who owns our planet.";
-    const introElement = document.getElementById("intro-text");
+function updateScores() {
+    const playerScoreDisplay = document.getElementById("player-score");
+    const computerScoreDisplay = document.getElementById("computer-score");
 
-    // Set the text content to an empty string before starting the animation
-    introElement.textContent = '';
-
-    typeWriter(introText, introElement, 75);
+    playerScoreDisplay.textContent = `PLAYER: ${playerScore}`;
+    computerScoreDisplay.textContent = `COMPUTER: ${computerScore}`;
 }
 
-function showCelebration() {
+function showWinner(winner) {
+    const resultDisplay = document.getElementById("result");
+    resultDisplay.textContent = `Game Over. ${winner} wins!`;
+}
+
+function restartGame() {
+    playerScore = 0;
+    computerScore = 0;
+    updateScores();
+    displayResult("");
     const celebrationElement = document.getElementById("celebration");
-    celebrationElement.classList.remove("hidden");
+    celebrationElement.classList.add("hidden");
+    startGame();
 }
 
 function game(playerSelection) {
     const computerSelection = getComputerChoice();
     const result = playRound(playerSelection, computerSelection);
+    
+    displayResult(result);
 
-    const resultDisplay = document.getElementById("result");
-    resultDisplay.textContent = result;
-
-    const playerScoreDisplay = document.getElementById("player-score");
-    const computerScoreDisplay = document.getElementById("computer-score");
-    let playerScore = parseInt(playerScoreDisplay.textContent.split(":")[1]);
-    let computerScore = parseInt(computerScoreDisplay.textContent.split(":")[1]);
-
-    if (result.startsWith("You Win")) {
+    if (result === 'You Win!') {
         playerScore++;
-        playerScoreDisplay.textContent = `PLAYER: ${playerScore}`;
-
-        if (playerScore >= 5) {
-            resultDisplay.textContent = "Congratulations! You won the game!";
-            showCelebration(); // Show celebration animation
-            return;
-        }
-    } else if (result.startsWith("You Lose")) {
-        // Handle the loss condition
+    } else if (result === 'You Lose!') {
+        computerScore++;
     }
 
-    // Update computer score and check for end of game
-    // ...
+    updateScores();
 
+    if (playerScore >= 5) {
+        showWinner("Player");
+    } else if (computerScore >= 5) {
+        showWinner("Computer");
+    }
 }
 
-// Event listeners for choice images
-const choiceImages = document.querySelectorAll(".choice-img");
-choiceImages.forEach((image) => {
-    image.addEventListener("click", function () {
-        const playerSelection = image.getAttribute("data-choice");
-        game(playerSelection);
-    });
+// Event listeners for choice buttons
+const rockButton = document.getElementById("rock-button");
+rockButton.addEventListener("click", function () {
+    game('rock');
+});
+
+const paperButton = document.getElementById("paper-button");
+paperButton.addEventListener("click", function () {
+    game('paper');
+});
+
+const scissorsButton = document.getElementById("scissors-button");
+scissorsButton.addEventListener("click", function () {
+    game('scissors');
 });
 
 // Call the startGame function to initiate the typing animation when the page loads
-window.addEventListener("DOMContentLoaded", startGame);
+window.addEventListener

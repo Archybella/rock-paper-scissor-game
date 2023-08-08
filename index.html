@@ -13,14 +13,21 @@
         <span id="computer-score">COMPUTER: 0</span>
     </div>
     <div class="choices">
-        <img class="choice-img" src="rock.png" alt="Rock" data-choice="rock">
-        <img class="choice-img" src="paper.png" alt="Paper" data-choice="paper">
-        <img class="choice-img" src="scissors.png" alt="Scissors" data-choice="scissors">
+        <button id="rock-button" data-choice="rock">
+            <img class="choice-img" src="rock.png" alt="Rock">
+        </button>
+        <button id="paper-button" data-choice="paper">
+            <img class="choice-img" src="paper.png" alt="Paper">
+        </button>
+        <button id="scissors-button" data-choice="scissors">
+            <img class="choice-img" src="scissors.png" alt="Scissors">
+        </button>
     </div>
     <div id="result"></div>
     <div id="celebration" class="hidden">
         <p>Congratulations! You win!</p>
         <img src="celebration.gif" alt="celebration.gif">
     </div>
+    <button id="play-again" onclick="restartGame()">Play Again</button>
 </body>
 </html>
